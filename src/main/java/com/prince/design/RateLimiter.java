@@ -10,7 +10,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Limit 3rd party api calls to x calls per seconds
+ * Limit 3rd party api calls to x calls per second
  *
  * @author Prince Raj
  */

@@ -1,6 +1,6 @@
 package com.prince.multithreading.locks;
 
-import com.multithreading.semaphores.BoundedSemaphore;
+import com.prince.multithreading.semaphores.BoundedSemaphore;
 
 /**
  * @author Prince Raj

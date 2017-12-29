@@ -1,7 +1,7 @@
 package com.prince.design.fsm.dynamic;
 
-import com.design.fsm.dynamic.action.Action;
-import com.design.fsm.dynamic.state.State;
+import com.prince.design.fsm.dynamic.action.Action;
+import com.prince.design.fsm.dynamic.state.State;
 
 /**
  * @author Prince Raj
