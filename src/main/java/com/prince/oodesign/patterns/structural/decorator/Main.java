@@ -9,4 +9,11 @@ package com.prince.oodesign.patterns.structural.decorator;
  */
 public class Main {
 
+    public static void main(String[] args) {
+        Car myTesla = new ModelS();
+        myTesla = new EnhancedAutoPilot(myTesla);
+
+        System.out.println(myTesla.getDescription());
+        System.out.println(myTesla.getCost());
+    }
 }
