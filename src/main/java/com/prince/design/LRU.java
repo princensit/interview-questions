@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * LRU -> Hash map with doubly linked list
+ *
  * @author Prince Raj
  */
 public class LRU {
@@ -43,13 +45,13 @@ public class LRU {
             if (node != null) {
                 if (node.previous != null) {
                     node.previous.next = node.next;
-                }else {
+                } else {
                     head = node.next;
                 }
                 if (node.next != null) {
                     node.next.previous = node.previous;
                 }
-                node.next=null;
+                node.next = null;
             } else {
                 if (nodeMap.size() == maxSize) {
                     nodeMap.remove(head.val);

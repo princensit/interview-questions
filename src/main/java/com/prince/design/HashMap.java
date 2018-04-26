@@ -1,4 +1,4 @@
-package com.prince.custom;
+package com.prince.design;
 
 import lombok.Data;
 
