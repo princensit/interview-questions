@@ -13,5 +13,7 @@ public class LoadBalancer {
         // random function
 
         // ip hash
+
+        // based on response times
     }
 }
