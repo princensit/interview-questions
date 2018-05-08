@@ -25,6 +25,12 @@ package com.prince.javaconcepts;
  * A request for a connection is served by a connection residing in the pool. In the end of the connection, the request
  * is returned to the pool and can be used to satisfy future requests.
  *
+ * Minimum properties that are needed to setup datasource:
+ * 1. driverClass Ex- com.mysql.jdbc.Driver
+ * 2. jdbcUrl Ex- jdbc:mysql://127.0.0.1:3306/test
+ * 3. user Ex- root
+ * 4. password Ex- password
+ *
  * </pre>
  *
  * @author Prince Raj
