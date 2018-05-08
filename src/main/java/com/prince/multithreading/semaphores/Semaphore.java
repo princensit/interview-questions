@@ -46,6 +46,7 @@ public class Semaphore {
         @Override
         public void run() {
             while (true) {
+                System.out.println("Sending Thread...");
                 // do something, then signal
                 semaphore.acquire();
             }
@@ -68,6 +69,7 @@ public class Semaphore {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println("Receiving Thread...");
                 // receive signal, then do something...
             }
         }

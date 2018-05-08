@@ -8,11 +8,15 @@ public class LoadBalancer {
     public static void main(String[] args) {
         // round robin
 
-        // weightage
+        // weighted round robin
+
+        // least connections
+
+        // weighted least connections
 
         // random function
 
-        // ip hash
+        // source ip hash
 
         // based on response times
     }

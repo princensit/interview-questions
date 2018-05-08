@@ -13,16 +13,22 @@ public class ProducerConsumer {
         int capacity = 2;
         BlockingQueue<Integer> sharedQueue = new LinkedBlockingQueue<>();
 
-        Producer producer = new Producer(capacity, sharedQueue);
-        Consumer consumer = new Consumer(capacity, sharedQueue);
+        Producer producer1 = new Producer(capacity, sharedQueue);
+        Producer producer2 = new Producer(capacity, sharedQueue);
+        Consumer consumer1 = new Consumer(capacity, sharedQueue);
+        Consumer consumer2 = new Consumer(capacity, sharedQueue);
 
-        producer.start();
-        consumer.start();
+        producer1.start();
+        consumer1.start();
+        consumer2.start();
+        producer2.start();
 
         Thread.sleep(15000);
 
-        producer.doStop();
-        consumer.doStop();
+        producer1.doStop();
+        producer2.doStop();
+        consumer1.doStop();
+        consumer2.doStop();
     }
 }
 
@@ -89,7 +95,7 @@ class Consumer extends Thread {
         while (!stopped) {
             if (isEmpty()) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
