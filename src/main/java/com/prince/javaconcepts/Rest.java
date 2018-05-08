@@ -35,11 +35,17 @@ package com.prince.javaconcepts;
  *  HTTP status code:
  *  200 - SUCCESS
  *  201 - CREATED
- *  301 - te
- *  404 - RESOURCE NOT FOUND
+ *  204 - NO CONTENT
+ *  206 - PARTIAL CONTENT
+ *  301 - PERMANENT REDIRECTION
+ *  302 - TEMPORARY REDIRECTION
+ *  304 - NOT MODIFIED (if request packet header like If-Match, If-ModifiedSince, If-None-Match not satisfied)
  *  400 - BAD REQUEST
  *  401 - UNAUTHORIZED
- *  500 - SERVER ERROR
+ *  403 - FORBIDDEN
+ *  404 - RESOURCE NOT FOUND
+ *  500 - INTERNAL SERVER ERROR
+ *  503 - SERVICE UNAVAILABLE
  *
  *  Versioning Options:
  *  URI Versioning
@@ -54,6 +60,59 @@ package com.prince.javaconcepts;
  *    http://localhost:8080/person/
  *      headers=[X-API-VERSION=2]
  *
+ *  URI(Uniform Resource Identifier) contain URL(Uniform Resource Locator) and URN (Uniform Resource Name, Ex- urn:isbn:0-123-45678-9)
+ *
+ *  HEAD - Same as the GET method but does not return the body of the message entity. Mainly used to confirm the validity
+ *         of the URL and the date and time of the resource update.
+ *
+ *  Persistent connections need to be managed using the Connection header field.
+ *  HTTP/1.1 is a persistent connection by default..
+ *  To disconnect, use "Connection: close".
+ *  To maintain a continuous connection, use "Connection : Keep-Alive"
+ *
+ *  Multi-part object collection:
+ *  A message body can contain multiple types of entities that are sent at the same time. Each section is separated by
+ *  a delimiter defined by the boundary field. Each section can have a header field.
+ *  Ex-
+ *    Content-Type: multipart/form-data; boundary=AaB03x
+ *
+ *     --AaB03x
+ *     Content-Disposition: form-data; name="submit-name"
+ *
+ *     Larry
+ *     --AaB03x
+ *     Content-Disposition: form-data; name="files"; filename="file1.txt"
+ *     Content-Type: text/plain
+ *
+ *     ... contents of file1.txt ...
+ *     --AaB03x--
+ *
+ *  Gateway:
+ *  Unlike proxy servers, gateway servers translate HTTP to other protocols for communication, requesting services from
+ *  other non-HTTP servers.
+ *
+ *  Tunnel:
+ *  Use an encryption method such as SSL to establish a secure communication line between the client and the server.
+ *
+ *  Cookies set with HttpOnly can prevent JavaScript scripts from being invoked to a certain extent to prevent XSS
+ *  attacks from stealing user's cookie information.
+ *
+ *  GET, HEAD, PUT, and DELETE are idempotent but the POST method is not.
+ *
+ *  XMLHttpRequest is an API that provides clients with the ability to transfer data between the client and the server.
+ *  It provides a simple way to get data through a URL and does not refresh the entire page. This allows the web page
+ *  to update only a portion of The page without disturbing the user. XMLHttpRequest is heavily used in AJAX.
+ *
+ *  HTTP/1.x defects
+ *  1. Clients need to use multiple connections to achieve concurrency and reduce latency;
+ *  2. Does not compress request and response headers, resulting in unnecessary network traffic;
+ *  3. Does not support effective resource priority, resulting in low utilization of the underlying TCP connection.
+ *
+ *  HTTP/2.0 divides the message into HEADERS frames and DATA frames, both of which are in binary format.
+ *
+ *  HTTP/2.0 When a client requests a resource, it sends related resources to the client, and the client does not need
+ *  to initiate the request again. For example, the client requests a page.html page, and the server sends the associated
+ *  resources As script.js and style.css to the client.
  *
  * </pre>
  *
