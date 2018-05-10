@@ -14,6 +14,7 @@ public class Knapsack {
         int[] weight = {10, 20, 30};
         int w = 50; // max capacity of knapsack
 
+        // Approach 1
         System.out.println(knapsackUsingRecursion(price, weight, w, price.length));
 
         int[][] dp = new int[w + 1][price.length + 1];
@@ -21,8 +22,10 @@ public class Knapsack {
             Arrays.fill(arr, -1);
         }
 
+        // Approach 2
         System.out.println(knapsackUsingDPTopDown(price, weight, w, price.length, dp));
 
+        // Approach 3
         System.out.println(knapsackUsingDPBottomUp(price, weight, w));
     }
 
