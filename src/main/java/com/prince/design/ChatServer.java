@@ -10,6 +10,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
+ * https://www.youtube.com/watch?v=zKPNUMkwOJE
+ * 
  * @author Prince Raj
  */
 public class ChatServer {

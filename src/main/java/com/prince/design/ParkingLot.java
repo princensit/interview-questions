@@ -1,6 +1,8 @@
 package com.prince.design;
 
 /**
+ * https://coderanch.com/t/628047/engineering/Parking-Lot-Design
+ * 
  * @author Prince Raj
  */
 public class ParkingLot {
