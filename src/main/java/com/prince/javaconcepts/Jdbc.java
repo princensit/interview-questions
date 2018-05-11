@@ -6,7 +6,8 @@ package com.prince.javaconcepts;
  * applications in Java, without having to concern themselves with the underlying details of a particular database.
  *
  * The JDBC Driver provides vendor-specific implementations of the abstract classes provided by the JDBC API. Each driver
- * must provide implementations for the following classes of the java.sql package:Connection, Statement, PreparedStatement, CallableStatement, ResultSet and Driver.
+ * must provide implementations for the following classes of the java.sql package:Connection, Statement, PreparedStatement,
+ * CallableStatement, ResultSet and Driver.
  *
  * Class.forName() method is used to load the driver that will establish a connection to the database.
  *

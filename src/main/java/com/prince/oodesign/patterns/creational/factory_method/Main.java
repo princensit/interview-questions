@@ -11,7 +11,9 @@ package com.prince.oodesign.patterns.creational.factory_method;
 public class Main {
 
     public static void main(String[] args) {
-        ConcreteCreator creator = new ConcreteCreator();
+        Creator creator = new ConcreteCreator();
+        creator.someOperation();
+
         Product product = creator.factoryMethod();
         product.doSomething();
     }

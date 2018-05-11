@@ -23,7 +23,7 @@ public class ForkJoinUsage1 {
 
     private static final class MyRecursiveAction extends RecursiveAction {
 
-        private long workload = 0;
+        private final long workload;
 
         private MyRecursiveAction(long workload) {
             this.workload = workload;
@@ -33,9 +33,9 @@ public class ForkJoinUsage1 {
         protected void compute() {
             if (workload > 10) {
                 System.out.println("Splitting workload: " + workload);
-                List<MyRecursiveAction> subTasks = createSubTasks(workload);
+                List<RecursiveAction> subTasks = createSubTasks(workload);
 
-                for (MyRecursiveAction subTask : subTasks) {
+                for (RecursiveAction subTask : subTasks) {
                     subTask.fork();
                 }
             } else {
@@ -43,11 +43,11 @@ public class ForkJoinUsage1 {
             }
         }
 
-        private List<MyRecursiveAction> createSubTasks(long workload) {
-            List<MyRecursiveAction> subTasks = new ArrayList<>();
+        private List<RecursiveAction> createSubTasks(long workload) {
+            List<RecursiveAction> subTasks = new ArrayList<>();
 
-            MyRecursiveAction subTask1 = new MyRecursiveAction(workload / 2);
-            MyRecursiveAction subTask2 = new MyRecursiveAction(workload / 2);
+            RecursiveAction subTask1 = new MyRecursiveAction(workload / 2);
+            RecursiveAction subTask2 = new MyRecursiveAction(workload / 2);
 
             subTasks.add(subTask1);
             subTasks.add(subTask2);

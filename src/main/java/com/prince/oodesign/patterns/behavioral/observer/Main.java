@@ -28,8 +28,8 @@ public class Main {
         WeatherStation weatherStation = new WeatherStation();
 
         // create observers
-        TemperatureDisplay o1 = new TemperatureDisplay(weatherStation);
-        Fan o2 = new Fan(weatherStation);
+        new TemperatureDisplay(weatherStation);
+        new Fan(weatherStation);
 
         Temperature temp = new Temperature();
         temp.setTemperature(23);

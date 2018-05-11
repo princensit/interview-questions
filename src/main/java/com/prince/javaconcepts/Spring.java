@@ -47,7 +47,7 @@ package com.prince.javaconcepts;
  * Spring 2.5 (2006)  made annotation-driven configuration possible.
  * Spring 3.0 (2009) made great use of the Java 5 improvements in language.
  * Spring 4.0 (2013) made full support to Java 8. Introduced @RestController annotation. Spring 4.1 supports JCache (JSR-107) annotations
- * Spring 5.0 (2017) made dupport for functional web framework. Support for reactive programming and Kotlin programming language.
+ * Spring 5.0 (2017) made support for functional web framework. Support for reactive programming and Kotlin programming language.
  *
  * Spring AOP is proxy-based. It is commonly used as an implementation of "cross-cutting concerns" which means it defines, in one place,
  * functionality that is needed in multiple places throughout a code.
@@ -157,7 +157,7 @@ package com.prince.javaconcepts;
  * 4. Spring Boot Actuator
  *
  * Actuator - Actuator is mainly used to expose operational information about the running application like /health,
- * /metrics, /info, /dump, /env, etc. It uses HTTP endpoints or JMX beans to enable us to interact with it.
+ * /metrics, /info, /dump, /env, /beans, etc. It uses HTTP endpoints or JMX beans to enable us to interact with it.
  *
  * Custom endpoints:
  * endpoints.beans.id=springbeans
@@ -176,14 +176,16 @@ package com.prince.javaconcepts;
  * }
  *
  * JDBC - Here we create connection and prepared statement, once execution done then connection is closed.
- * Spring JDBC - Here jdbcTemplate is used, and is not required to open/close connection. Additionally we have RowMapper and RowCallbackHandler.
+ * Spring JDBC - Here jdbcTemplate is used, and is not required to open/close connection. Additionally we have RowMapper
+ * and RowCallbackHandler.
  *
  * @RunWith(MockitoJUnitRunner.class)
  * public class SomeBusinessMockAnnotationsTest {
  *    @Mock
  *    private DataService dataServiceMock;
  *
- *    @InjectMocks -> creates an instance of the class and injects the mocks that are created with the @Mock (or @Spy) annotations into this instance.
+ *    @InjectMocks -> creates an instance of the class and injects the mocks that are created with the @Mock (or @Spy)
+ *    annotations into this instance.
  *    private SomeBusinessImpl businessImpl;
  *
  *    @Test

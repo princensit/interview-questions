@@ -49,7 +49,7 @@ public class Exchanger {
         public void run() {
             try {
                 Object previous = object;
-                object = exchanger.exchange(object);
+                object = exchanger.exchange(previous);
 
                 System.out.println(Thread.currentThread().getName() + " exchanged " + previous + " for " + object);
             } catch (InterruptedException e) {

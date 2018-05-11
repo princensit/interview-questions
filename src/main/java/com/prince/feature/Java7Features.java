@@ -12,10 +12,10 @@ public class Java7Features {
         System.out.println("4. Diamond Syntax. Ex - Map<String, String> map = new HashMap<>();");
         System.out.println("5. Multi-catch similar exceptions");
         System.out.println(" try {\n"
-                + "        throw new FileNotFoundException(\"FileNotFoundException\");\n"
-                + "    } catch (FileNotFoundException | IOException fnfo) {\n"
-                + "        fnfo.printStackTrace();\n"
-                + "    }");
+                + "              throw new FileNotFoundException(\"FileNotFoundException\");\n"
+                + "          } catch (FileNotFoundException | IOException fnfo) {\n"
+                + "              fnfo.printStackTrace();\n"
+                + "          }");
         System.out.println("6. Try with resources i.e. Automatic resource management");
         System.out.println("7. ForkJoinPool added");
     }

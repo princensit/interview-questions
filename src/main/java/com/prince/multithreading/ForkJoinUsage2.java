@@ -20,7 +20,7 @@ public class ForkJoinUsage2 {
 
     private static final class MyRecursiveTask extends RecursiveTask<Long> {
 
-        private long workload = 0;
+        private final long workload;
 
         private MyRecursiveTask(long workload) {
             this.workload = workload;

@@ -2,7 +2,8 @@ package com.prince.javaconcepts;
 
 /**
  * <pre>
- *  A process is an execution of a program, while a Thread is a single execution sequence within a process. A process can contain multiple threads. A Thread is sometimes called a lightweight process.
+ *  A process is an execution of a program, while a Thread is a single execution sequence within a process. A process
+ *  can contain multiple threads. A Thread is sometimes called a lightweight process.
  *
  *  Three ways to create thread;
  *  1. A class may extend the Thread class.

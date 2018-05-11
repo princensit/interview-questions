@@ -14,7 +14,7 @@ package com.prince.multithreading;
  *
  * @author Prince Raj
  */
-public class AnatomyOfASynchronizer {
+public class AnatomyOfSynchronizer {
 
     public class BoundedSemaphore {
 
