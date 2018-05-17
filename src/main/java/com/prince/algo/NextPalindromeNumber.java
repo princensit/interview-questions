@@ -74,7 +74,7 @@ public class NextPalindromeNumber {
                     } else {
                         // 199997 or 19997
                         arr[mid] = 0;
-                        while (mid >= 0 && arr[--mid] == 9) {
+                        while (arr[--mid] == 9) {
                             arr[mid] = 0;
                         }
                         arr[mid] += 1;
