@@ -61,7 +61,7 @@ public class Main {
      * 2. Repeatable reads:
      *    -> Read and write locks (acquired on selected data) until the end of txn.
      *    -> But range locks are not managed so phantom reads can occur.
-     *    -> Write skew possible at tis isolation level.
+     *    -> Write skew possible at this isolation level.
      *    -> A phenomena where 2 writes are allowed to same columns in a row by 2 writers (who have previously read the
      *       columns they are updating), resulting in a row having data that is a mix of 2 txns.
      * 3. Read committed:

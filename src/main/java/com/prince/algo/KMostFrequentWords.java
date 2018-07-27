@@ -20,7 +20,7 @@ public class KMostFrequentWords {
 
         @Override
         public int compare(Word o1, Word o2) {
-            return o1.frequency.compareTo(o2.frequency);
+            return o1.getFrequency().compareTo(o2.getFrequency());
         }
     });
 
@@ -44,7 +44,7 @@ public class KMostFrequentWords {
                 int size = minHeap.size();
                 if (size == k) {
                     Word w = minHeap.peek();
-                    if (w.frequency < nw.getFrequency()) {
+                    if (w.getFrequency() < nw.getFrequency()) {
                         minHeap.remove(w);
                         minHeap.add(nw);
                     }
