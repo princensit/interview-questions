@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.prince</groupId>
-    <artifactId>interview-questions</artifactId>
+    <artifactId>awesome-practice-questions</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>interview-questions</name>
-    <description>interview-questions</description>
+    <name>awesome-practice-questions</name>
+    <description>awesome-practice-questions</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
