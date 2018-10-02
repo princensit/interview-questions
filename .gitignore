@@ -1,0 +1,13 @@
+/target/
+*~
+
+**/*.classpath
+**/*.project
+**/*.settings/
+**/bin/
+**/target/
+.idea
+*.iml
+*.settings
+*.metadata
+upload.msg
