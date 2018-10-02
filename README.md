@@ -1,1 +1,1 @@
-# interview-questions
+# Awesome practice questions
