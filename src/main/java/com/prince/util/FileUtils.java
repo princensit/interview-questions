@@ -14,6 +14,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
@@ -24,8 +25,6 @@ import java.util.zip.ZipOutputStream;
  * Provides utilities related to files or directories
  */
 public class FileUtils {
-
-    public static final String UTF8_ENCODING = "UTF-8";
 
     private static final int BUFFER_SIZE = 8192;
 
@@ -45,7 +44,7 @@ public class FileUtils {
      *
      * @param filePath file path
      * @return input stream
-     * @throws java.io.IOException
+     * @throws java.io.IOException IO exception
      */
     public static BufferedInputStream getBufferedInputStream(String filePath) throws IOException {
         File inputFile = new File(filePath);
@@ -57,7 +56,7 @@ public class FileUtils {
      *
      * @param filePath path of the input file.
      * @return reader
-     * @throws IOException
+     * @throws IOException IO exception
      */
     public static BufferedReader getBufferedReader(String filePath) throws IOException {
         File file = new File(filePath);
@@ -71,7 +70,7 @@ public class FileUtils {
      * @param dirName directory of the input file.
      * @param fileName name of the input file.
      * @return reader
-     * @throws IOException
+     * @throws IOException IO exception
      */
     public static BufferedReader getBufferedReader(String dirName, String fileName)
             throws IOException {
@@ -84,7 +83,7 @@ public class FileUtils {
      *
      * @param file the input file
      * @return reader
-     * @throws IOException
+     * @throws IOException IO exception
      */
     public static BufferedReader getBufferedReader(File file) throws IOException {
         InputStream inputStream = getInputStream(file);
@@ -96,11 +95,12 @@ public class FileUtils {
      *
      * @param inputStream file path
      * @return reader
-     * @throws java.io.UnsupportedEncodingException
+     * @throws java.io.UnsupportedEncodingException exception
      */
     public static BufferedReader getBufferedReader(InputStream inputStream)
             throws UnsupportedEncodingException {
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, UTF8_ENCODING);
+        InputStreamReader inputStreamReader =
+                new InputStreamReader(inputStream, StandardCharsets.UTF_8);
         return new BufferedReader(inputStreamReader);
     }
 
@@ -114,7 +114,7 @@ public class FileUtils {
      *
      * @param filePath path of the output file.
      * @return writer
-     * @throws IOException
+     * @throws IOException exception
      */
     public static BufferedWriter getBufferedWriter(String filePath) throws IOException {
         File file = new File(filePath);
@@ -127,7 +127,7 @@ public class FileUtils {
      * @param dirName directory of the output file.
      * @param fileName name of the output file.
      * @return writer
-     * @throws IOException
+     * @throws IOException exception
      */
     public static BufferedWriter getBufferedWriter(String dirName, String fileName)
             throws IOException {
@@ -140,7 +140,7 @@ public class FileUtils {
      *
      * @param file the output file
      * @return writer
-     * @throws IOException
+     * @throws IOException exception
      */
     public static BufferedWriter getBufferedWriter(File file) throws IOException {
         OutputStream outputStream = getOutputStream(file);
@@ -152,11 +152,12 @@ public class FileUtils {
      *
      * @param outputStream output stream
      * @return writer
-     * @throws UnsupportedEncodingException
+     * @throws UnsupportedEncodingException exception
      */
     public static BufferedWriter getBufferedWriter(OutputStream outputStream)
             throws UnsupportedEncodingException {
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, UTF8_ENCODING);
+        OutputStreamWriter outputStreamWriter =
+                new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
         return new BufferedWriter(outputStreamWriter);
     }
 
@@ -166,7 +167,7 @@ public class FileUtils {
      *
      * @param file the output file
      * @return writer
-     * @throws IOException
+     * @throws IOException exception
      */
     public static PrintWriter getPrintWriter(File file) throws IOException {
         BufferedWriter bufferedWriter = getBufferedWriter(file);

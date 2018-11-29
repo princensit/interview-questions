@@ -21,12 +21,14 @@ public class ReverseLinkedList {
         System.out.println();
 
         reverseLLIterative();
-
         printLL();
         System.out.println();
 
         reverseLLRecursive();
+        printLL();
+        System.out.println();
 
+        head = reverseLLRecursive2(head);
         printLL();
     }
 
@@ -49,7 +51,21 @@ public class ReverseLinkedList {
     }
 
     private static void reverseLLRecursive() {
-        reverseLLRecursive(head, null);
+        if (head != null) {
+            reverseLLRecursive(head, null);
+        }
+    }
+
+    private static Node reverseLLRecursive2(Node node) {
+        if (node == null || node.getNext() == null) {
+            return node;
+        }
+
+        Node newHead = reverseLLRecursive2(node.getNext());
+        node.getNext().setNext(node);
+        node.setNext(null);
+
+        return newHead;
     }
 
     private static void reverseLLRecursive(Node current, Node prev) {
