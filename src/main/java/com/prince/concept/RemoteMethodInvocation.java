@@ -1,4 +1,4 @@
-package com.prince.javaconcepts;
+package com.prince.concept;
 
 /**
  * <pre>

@@ -85,9 +85,9 @@ public class Main {
      *
      * Isolation level vs lock duration:
      * In lock based concurrency control, isolation level determines the duration of locks that are held.
-     * Locks are held until txn committs.
-     * Locks are held only during the currently executing statement. Note that if locks are release after aa statement,
-     * the underlying data could be changed by another txn before the current txn commits, thus cerating violation.
+     * Locks are held until txn commits.
+     * Locks are held only during the currently executing statement. Note that if locks are release after a statement,
+     * the underlying data could be changed by another txn before the current txn commits, thus creating violation.
      *
      *                         (Locks are held...)
      * | Isolation level   | Write operation     | Read operation        | Range operation       |

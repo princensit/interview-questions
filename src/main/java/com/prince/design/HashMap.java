@@ -2,6 +2,8 @@ package com.prince.design;
 
 import lombok.Data;
 
+import java.util.Objects;
+
 /**
  * @author Prince Raj
  */
@@ -48,10 +50,11 @@ public class HashMap<K, V> {
         System.out.println("size: " + map.size());
     }
 
+    @SuppressWarnings("unchecked")
     public HashMap() {
         this.table = new Entry[DEFAULT_INITIAL_CAPACITY];
 
-        this.threshold = (int)(DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR);
+        this.threshold = (int) (DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR);
         this.loadFactor = DEFAULT_LOAD_FACTOR;
     }
 
@@ -59,6 +62,7 @@ public class HashMap<K, V> {
         this(initialCapacity, DEFAULT_LOAD_FACTOR);
     }
 
+    @SuppressWarnings("unchecked")
     public HashMap(int initialCapacity, float loadFactor) {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Illegal initial capacity");
@@ -73,7 +77,7 @@ public class HashMap<K, V> {
         }
 
         this.table = new Entry[initialCapacity];
-        this.threshold = (int)Math.min(initialCapacity * loadFactor, MAXIMUM_CAPACITY);
+        this.threshold = (int) Math.min(initialCapacity * loadFactor, MAXIMUM_CAPACITY);
         this.loadFactor = loadFactor;
     }
 
@@ -86,6 +90,7 @@ public class HashMap<K, V> {
         return entry == null ? null : entry.getValue();
     }
 
+    @SuppressWarnings("unchecked")
     public V put(K key, V value) {
         if (key == null || value == null) {
             throw new RuntimeException("Key/Value can't be null");
@@ -94,7 +99,7 @@ public class HashMap<K, V> {
         V oldValue = null;
         Entry entry = getEntry(key);
         if (entry != null) {
-            oldValue = (V)entry.value;
+            oldValue = (V) entry.value;
             entry.value = value;
         } else {
             int hash = hash(key);
@@ -114,7 +119,7 @@ public class HashMap<K, V> {
 
         Entry<K, V> prev = null;
         for (Entry<K, V> e = table[index]; e != null; e = e.next) {
-            if (e.hash == hash && (e.key == key || (key != null && key.equals(e.key)))) {
+            if (e.hash == hash && (Objects.equals(key, e.key))) {
                 value = e.value;
 
                 if (prev == null) {
@@ -147,6 +152,7 @@ public class HashMap<K, V> {
         table[index] = new Entry<>(key, value, hash, e);
     }
 
+    @SuppressWarnings("unchecked")
     private void resize(int newCapacity) {
         Entry[] oldTable = table;
         int oldCapacity = oldTable.length;
@@ -169,7 +175,7 @@ public class HashMap<K, V> {
         }
 
         table = newTable;
-        threshold = (int)Math.min(newCapacity * loadFactor, MAXIMUM_CAPACITY);
+        threshold = (int) Math.min(newCapacity * loadFactor, MAXIMUM_CAPACITY);
     }
 
     private Entry<K, V> getEntry(K key) {
@@ -178,7 +184,7 @@ public class HashMap<K, V> {
 
         Entry<K, V> found = null;
         for (Entry<K, V> e = table[index]; e != null; e = e.next) {
-            if (e.hash == hash && (e.key == key || (key != null && key.equals(e.key)))) {
+            if (e.hash == hash && (Objects.equals(key, e.key))) {
                 found = e;
                 break;
             }

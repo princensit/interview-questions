@@ -1,4 +1,4 @@
-package com.prince.javaconcepts;
+package com.prince.concept;
 
 /**
  * http://code.nomad-labs.com/2010/11/18/identifying-which-java-thread-is-consuming-most-cpu/

@@ -1,4 +1,4 @@
-package com.prince.javaconcepts;
+package com.prince.concept;
 
 /**
  * https://github.com/CyC2018/Interview-Notebook/blob/master/notes/MySQL.md
