@@ -15,8 +15,8 @@ public class ProducerConsumer {
 
         Producer producer1 = new Producer(capacity, sharedQueue);
         Producer producer2 = new Producer(capacity, sharedQueue);
-        Consumer consumer1 = new Consumer(capacity, sharedQueue);
-        Consumer consumer2 = new Consumer(capacity, sharedQueue);
+        Consumer consumer1 = new Consumer(sharedQueue);
+        Consumer consumer2 = new Consumer(sharedQueue);
 
         producer1.start();
         consumer1.start();
@@ -31,6 +31,7 @@ public class ProducerConsumer {
         consumer2.doStop();
     }
 }
+
 
 class Producer extends Thread {
 
@@ -77,16 +78,14 @@ class Producer extends Thread {
     }
 }
 
-class Consumer extends Thread {
 
-    private final int capacity;
+class Consumer extends Thread {
 
     private final BlockingQueue<Integer> sharedQueue;
 
     private boolean stopped;
 
-    Consumer(int capacity, BlockingQueue<Integer> sharedQueue) {
-        this.capacity = capacity;
+    Consumer(BlockingQueue<Integer> sharedQueue) {
         this.sharedQueue = sharedQueue;
     }
 
