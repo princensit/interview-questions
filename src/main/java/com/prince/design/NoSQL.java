@@ -16,6 +16,7 @@ public class NoSQL {
         System.out.println("Key-Value Store (Ordered) ==> MemcacheDB");
         System.out.println("Data-Structures Server ==> Redis");
         System.out.println("Document Store ==> MongoDB, CouchDB");
-        System.out.println("Wide Column Store ==> BigTable, Cassandra, HBase");
+        System.out.println("Wide Column Store (Columnar databases best suited for analyzing large datasets) ==> BigTable, Cassandra, HBase, Redshift");
+        System.out.println("Graph Store ==> Neo4J, InfiniteGraph");
     }
 }
