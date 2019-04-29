@@ -9,7 +9,8 @@ package com.prince.concept;
  * declared in a method or a constructor’s throws clause
  *
  * Exception and Error classes are both subclasses of the Throwable class. The Exception class is used for exceptional
- * conditions that a user’s program should catch. The Error class should be handled by JVM.
+ * conditions that a user’s program should catch. The Error class should be handled by JVM. For example, a stack
+ * overflow error is not possible handle in code.
  *
  * The Exception object will be garbage collected in the next garbage collection, once exception handling done.
  *
@@ -21,6 +22,20 @@ package com.prince.concept;
  * ClassNotFoundException is an exception that occurs when you try to load a class at run time using Class.forName() or loadClass()
  * methods and mentioned classes are not found in the classpath.
  * NoClassDefFoundError is an error that occurs when a particular class is present at compile time, but was missing at run time.
+ *
+ * Examples of Checked Exceptions:
+ * 1. ClassNotFoundException
+ * 2. IOException
+ * 3. FileNotFoundException
+ * 4. InterruptedException
+ * ...
+ *
+ * Examples of Unchecked Exceptions:
+ * 1. ArrayIndexOutOfBoundsException
+ * 2. ClassCastException
+ * 3. NoClassDefFoundError
+ * 4. NullPointerException
+ * ...
  *
  * </pre>
  *

@@ -33,7 +33,10 @@ public class Docker {
      *
      * You start with a base image, and then make your changes, and commit those changes using docker, and it creates
      * an image. This image contains only the differences from the base. When you want to run your image, you also need
-     * the base, and it layers your image on top of the base using a layered file system: as mentioned above, Docker uses AUFS. AUFS merges the different layers together and you get what you want; you just need to run it. You can keep adding more and more images (layers) and it will continue to only save the diffs. Since Docker typically builds on top of ready-made images from a registry, you rarely have to "snapshot" the whole OS yourself.
+     * the base, and it layers your image on top of the base using a layered file system: as mentioned above, Docker uses
+     * AUFS. AUFS merges the different layers together and you get what you want; you just need to run it. You can keep
+     * adding more and more images (layers) and it will continue to only save the diffs. Since Docker typically builds
+     * on top of ready-made images from a registry, you rarely have to "snapshot" the whole OS yourself.
      *
      * </pre>
      *

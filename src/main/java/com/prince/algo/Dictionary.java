@@ -21,9 +21,11 @@ public class Dictionary {
         dict.addWord("hi");
         dict.addWord("hike");
         dict.printWords();
+
         System.out.println("########");
         System.out.println(dict.containsWord("hi"));
         System.out.println(dict.containsWord("hint"));
+
         dict.wordWithPrefix("hi");
         dict.wordWithPrefix("hil");
         dict.wordWithPrefix("hik");
@@ -132,7 +134,7 @@ public class Dictionary {
     }
 
     private char getChar(int index) {
-        return (char)(index + 97);
+        return (char) (index + 97);
     }
 
     private static String[] getWords() {
