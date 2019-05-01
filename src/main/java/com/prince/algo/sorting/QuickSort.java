@@ -4,6 +4,23 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
+ * Quicksort is a sorting algorithm which applies divide and conquer paradigm. Moreover, it works
+ * in-place but not stable. The performance of quicksort depends on selecting the pivot, and
+ * starting to partition around it. During the partition procedure subarrays divided into four
+ * regions; ≤x, >x, unrestricted ,and finally the pivot.
+ *
+ * |....<= pivot....|....> pivot....|....{unrestricted}....|pivot|
+ *
+ * <pre>
+ *  * Space complexity: O(n)
+ *  *
+ *  * Time complexity:
+ *  *   Best: O(nlogn)
+ *  *   Worst: O(n2)
+ *  *   Average: O(nlogn)
+ *  *
+ * </pre>
+ *
  * @author Prince Raj
  */
 public class QuickSort {
@@ -26,6 +43,16 @@ public class QuickSort {
         }
     }
 
+    /**
+     * Pivot is selected by a randomized way to prevent from worst cases (like already sorted array
+     * as input). Instead of always selecting A[high] as the pivot, an element is randomly chosen
+     * from the subarray A[low..high]. After pivot is selected it is swapped by A[high].
+     *
+     * @param numbers array
+     * @param low low index
+     * @param high high index
+     * @return pivot index
+     */
     private int randomizedPartition(int[] numbers, int low, int high) {
         Random rand = new Random();
         int randomPivot = rand.nextInt(high - low + 1) + low;

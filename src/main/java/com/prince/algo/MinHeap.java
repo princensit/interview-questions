@@ -36,6 +36,7 @@ public class MinHeap {
         buildHeap();
     }
 
+    // bubble-up until heap property is restored
     public void insert(int item) {
         list.add(item);
 
@@ -65,7 +66,7 @@ public class MinHeap {
         int lastItem = list.remove(size - 1);
         list.set(0, lastItem);
 
-        // call heapify
+        // bubble-down until heap property is maintained
         minHeapify(0);
 
         return min;
