@@ -11,6 +11,7 @@ package com.prince.concept;
  * 6. Java coding conventions
  * 7. SOLID principles
  * 8. Design patterns
+ * 9. DB indexes as reads would be fast but writes would be slow.
  *
  * </pre>
  *

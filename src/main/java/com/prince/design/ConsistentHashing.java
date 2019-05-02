@@ -56,7 +56,8 @@ public class ConsistentHashing {
         // one node down
         System.out.println("Next, node: " + node + " is down");
         ch.removeNode(node);
-        // TODO if node is down, then return 503 (service unavailable) http status code for concurrent requests
+        // TODO if node is down, then return 503 (service unavailable) http status code for
+        // concurrent requests
 
         // old node data is present in new node
         node = ch.getNode(key);
@@ -165,7 +166,8 @@ public class ConsistentHashing {
             int hash = entry.getKey();
             Object value = entry.getValue();
 
-            if ((hash > hash1 && hash <= replicaHash) || (hash1 > replicaHash && (hash > hash1 || hash <= replicaHash))) {
+            if ((hash > hash1 && hash <= replicaHash)
+                    || (hash1 > replicaHash && (hash > hash1 || hash <= replicaHash))) {
                 SortedMap<Integer, Object> destSortedMap = nodeObjectMap.get(destNode);
                 if (destSortedMap == null) {
                     destSortedMap = new TreeMap<>();
@@ -189,7 +191,8 @@ public class ConsistentHashing {
             Map.Entry<Integer, Object> entry = iterator.next();
             int hash = entry.getKey();
 
-            if ((hash > hash1 && hash <= replicaHash) || (hash1 > replicaHash && (hash > hash1 || hash <= replicaHash))) {
+            if ((hash > hash1 && hash <= replicaHash)
+                    || (hash1 > replicaHash && (hash > hash1 || hash <= replicaHash))) {
                 iterator.remove();
             }
         }
@@ -239,35 +242,9 @@ public class ConsistentHashing {
     }
 
     private static String[] getObjects() {
-        return new String[] {
-                "basic",
-                "Being",
-                "computer",
-                "displays",
-                "for",
-                "hello",
-                "illustrate",
-                "in",
-                "is",
-                "it",
-                "language",
-                "languages",
-                "most",
-                "of",
-                "often",
-                "or",
-                "outputs",
-                "program",
-                "programming",
-                "simple",
-                "syntax",
-                "that",
-                "the",
-                "to",
-                "used",
-                "user",
-                "very",
-                "working",
-                "World"};
+        return new String[] {"basic", "Being", "computer", "displays", "for", "hello", "illustrate",
+                "in", "is", "it", "language", "languages", "most", "of", "often", "or", "outputs",
+                "program", "programming", "simple", "syntax", "that", "the", "to", "used", "user",
+                "very", "working", "World"};
     }
 }
