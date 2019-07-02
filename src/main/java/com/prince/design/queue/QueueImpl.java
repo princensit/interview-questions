@@ -24,26 +24,23 @@ public class QueueImpl<T> implements Queue<T> {
 
     private Object[] messages;
 
-    private int size;
+    private int capacity;
 
     public QueueImpl(int maxCapacity) {
-        this.size = maxCapacity;
+        this.capacity = maxCapacity;
 
         messages = new Object[maxCapacity];
     }
 
     @Override
     public synchronized void sendMessage(T payload) throws InterruptedException {
-        // condition for queue is full
-
         // while loop is required because of 2 following reasons:
         // 1. Since notify() and notifyAll() randomly wakes up threads that are waiting on this
         // object’s monitor, it’s not always important that the condition is met. Sometimes it can
         // happen that the thread is woken up, but the condition isn’t actually satisfied yet.
         // 2. To handle spurious wakeup calls
-        while (front - 1 == rear || (front == 0 && rear == size - 1)) {
-
-            // wait releases the lock as soon as it is called
+        while (isFull()) {
+            // wait() releases the lock as soon as it is called
 
             // The thread releases ownership of this monitor and waits until another thread notifies
             // threads waiting on this object's monitor to wake up either through a call to the
@@ -52,14 +49,13 @@ public class QueueImpl<T> implements Queue<T> {
             wait();
         }
 
-        if (front == -1) {
-            front = 0;
-        }
-
-        rear = (rear + 1) % size;
+        rear = (rear + 1) % capacity;
         messages[rear] = payload;
 
-        // TODO what would happen if front and rear = 0
+        if (front == -1) {
+            front = rear;
+        }
+
         // notify/notifyAll don't release locks like wait does. The awakened thread can't run until
         // the code which called notify releases its lock.
         notifyAll();
@@ -67,18 +63,31 @@ public class QueueImpl<T> implements Queue<T> {
 
     @Override
     public synchronized T receiveMessage() throws InterruptedException {
-        // condition for queue is empty
         // while loop is used to handle spurious wakeup calls
-        while ((front == -1 && rear == -1) || (front == rear)) {
+        while (isEmpty()) {
             wait();
         }
 
         T payload = (T) messages[front];
-        front = (front + 1) % size;
+
+        if (front == rear) {
+            front = -1;
+            rear = -1;
+        } else {
+            front = (front + 1) % capacity;
+        }
 
         notifyAll();
 
         return payload;
+    }
+
+    public boolean isEmpty() {
+        return front == -1;
+    }
+
+    public boolean isFull() {
+        return rear + 1 % capacity == front;
     }
 
     @Override
@@ -89,7 +98,7 @@ public class QueueImpl<T> implements Queue<T> {
                     System.out.print(messages[i]);
                 }
             } else {
-                for (int i = front; i <= size - 1; i++) {
+                for (int i = front; i <= capacity - 1; i++) {
                     System.out.print(messages[i]);
                 }
 

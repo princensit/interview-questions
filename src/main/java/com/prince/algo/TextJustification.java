@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class TextJustification {
 
     public static void main(String[] args) {
-        String[] words = {"prince", "raj", "likes", "to", "code"};
+        String[] words = {"prince", "raj", "likesCount", "to", "code"};
         int width = 10; // width of screen
 
         System.out.println("Text justification minimum cost:" + minimumCost(words, width));
