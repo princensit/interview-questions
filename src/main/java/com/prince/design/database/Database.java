@@ -1,6 +1,8 @@
 package com.prince.design.database;
 
 /**
+ * MySQL Guide: http://www.unofficialmysqlguide.com/introduction.html
+ *
  * In the context of databases, cardinality refers to the uniqueness of data values contained in a
  * column. High cardinality means that the column contains a large percentage of totally unique
  * values. Low cardinality means that the column contains a lot of “repeats” in its data range.
@@ -319,6 +321,99 @@ package com.prince.design.database;
  *
  * No. of concurrent transaction MySQL (InnoDB) can perform:
  * https://dev.mysql.com/doc/refman/5.7/en/innodb-undo-logs.html
+ *
+ *
+ * <pre>
+ * https://dzone.com/articles/database-btree-indexing-in-sqlite
+ *
+ * How Is Indexing Used in a Database?
+ *
+ * B Tree is faster when you insert values in the middle
+ * B+ Tree is faster for sorting
+ *
+ * A B-Tree for reference stores data in the nodes, and leaves, and has no such link because
+ * scanning requires backtracking. The idea of a B+Tree is to maximize read-size for disk seeks.
+ *
+ * When indexing is used first, the database searches a given key in correspondence to B-tree and
+ * gets the index in O(log(n)) time. Then, it performs another search in B+tree by using the already
+ * found index in O(log(n)) time and gets the record.
+ *
+ * Each of these nodes in B-tree (indexing) and B+tree (actual data) is stored inside the Pages.
+ * Pages are fixed in size. Pages have a unique number starting from one. A page can be a reference
+ * to another page by using page number. At the beginning of the page, page meta details such as the
+ * rightmost child page number, first free cell offset, and first cell offset stored. There can be
+ * two types of pages in a database:
+ *
+ * 1. Pages for indexing: These pages store only index and a reference to another page.
+ * 2. Pages to store records: These pages store the actual data and page should be a leaf page.
+ *
+ * B tree used for indexing and B+tree used to store the actual records. B+ tree provides sequential
+ * search capabilities in addition to the binary search, which gives the database more control to
+ * search non-index values in a database.
+ *
+ * In the past, OLTP systems were frequently bottlenecked by IO, meaning CPUs were constantly waiting on HDDs to
+ * respond.  But on replacing HDDs with SSDs, the CPU becomes the bottleneck.
+ *
+ * </pre>
+ *
+ * The range optimizer is limited to range_optimizer_max_mem_size (default: 8M). Queries that use
+ * multiple IN lists could exceed this, as the combination of options may be expanded internally.
+ *
+ * Determining the order for composite indexes:
+ *
+ * 1. Left most rule - An index on (First Name, Last Name) can be used to also satisfy queries that
+ * need an index on (First Name), but not on queries that require an index on (Last Name). Try and
+ * design composite indexes in such a way that they can be reused by the greatest number of queries
+ * possible.
+ *
+ * 2. Ranges to the right - An index on (Age, First Name) can not be used to satisfy a query in the
+ * form of WHERE age BETWEEN x and y AND first_name = 'John' [1] . Or to state more specifically:
+ * the rest of the composite index will not be used after the first range condition.
+ *
+ *
+ * Covering Index:
+ *
+ * A covering index is a special type of composite index, where all of the columns exist in the
+ * index. In this scenario, MySQL is able to apply an optimization where it just returns the data
+ * from the index without accessing table rows.
+ *
+ * Ex- Consider the case that instead of saying SELECT * FROM Country, we only need to know the Name
+ * of the Country which meets the conditions population > 5M and continent='Asia'. An index on c_p_n
+ * (Continent,Population,Name) can use the first two columns for filtering rows, and return the
+ * value from the third column.
+ *
+ * Clustered Index:
+ *
+ * https://www.sqlshack.com/what-is-the-difference-between-clustered-and-non-clustered-indexes-in-sql-server/
+ *
+ * A clustered index defines the order in which data is physically stored in a table. Table data can
+ * be sorted in only way, therefore, there can be only one clustered index per table. In SQL Server,
+ * the primary key constraint automatically creates a clustered index on that particular column.
+ *
+ * Say, id in table is primary key (by default clustered). If we insert the records manually in any
+ * order, table stores the data in sorted way of id.
+ *
+ * Custom clustered index: CREATE CLUSTERED INDEX index_temp ON student(gender ASC, total_score
+ * DESC)
+ *
+ * Non-Clustered Index:
+ *
+ * A non-clustered index doesn't sort the physical data inside the table. In fact, a non-clustered
+ * index is stored at one place and table data is stored in another place.
+ *
+ *
+ * Differences between clustered and non-clustered indexes:
+ *
+ * 1. There can be only one clustered index per table. However, you can create multiple
+ * non-clustered indexes on a single table.
+ *
+ * 2. Clustered indexes only sort tables. Therefore, they do not consume extra storage.
+ * Non-clustered indexes are stored in a separate place from the actual table claiming more storage
+ * space.
+ *
+ * 3. Clustered indexes are faster than non-clustered indexes since they don’t involve any extra
+ * lookup step.
+ *
  *
  * @author Prince Raj
  */
