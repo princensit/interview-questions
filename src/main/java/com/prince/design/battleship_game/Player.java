@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import lombok.Data;
+
 import com.prince.design.battleship_game.model.Cell;
 import com.prince.design.battleship_game.model.Color;
 import com.prince.design.battleship_game.model.Coordinate;
 import com.prince.design.battleship_game.model.ShipType;
-import lombok.Data;
 
 /**
  * @author Prince Raj
@@ -19,9 +20,9 @@ public class Player {
 
     private final String name;
 
-    private Board shipBoard = new Board();
+    private Board shipBoard = new ShipBoard();
 
-    private Board missileTrackerBoard = new Board();
+    private Board missileTrackerBoard = new MissileTrackerBoard();
 
     private Random random = new Random();
 
@@ -33,6 +34,9 @@ public class Player {
         return name;
     }
 
+    /**
+     * initializing ships in random fashion for given player
+     */
     public void initializeShips() {
         Cell[][] cells = shipBoard.getCells();
 
@@ -57,22 +61,50 @@ public class Player {
         }
     }
 
+    /**
+     * returns the ships board
+     *
+     * @return returns the ships board
+     */
     public Board getShipBoard() {
         return shipBoard;
     }
 
-    public void mark(Coordinate coordinate, boolean hit) {
-        missileTrackerBoard.mark(coordinate, hit);
-    }
-
+    /**
+     * opponent player shoots the ships at given coordinate
+     *
+     * @param coordinate coordinate
+     * @return true if it is a hit else false for a miss
+     */
     public boolean shoot(Coordinate coordinate) {
         return shipBoard.shoot(coordinate);
     }
 
+    /**
+     * player marks in missile tracker board if he successfully hit the opponent ship
+     *
+     * @param coordinate coordinate
+     * @param hit status as true if hit else false
+     */
+    public void mark(Coordinate coordinate, boolean hit) {
+        missileTrackerBoard.mark(coordinate, hit);
+    }
+
+    /**
+     * print both the boards
+     */
     public void printBoards() {
         Cell[][] shipBoardCells = shipBoard.getCells();
         Cell[][] attackedBoardCells = missileTrackerBoard.getCells();
+
+        for (int j = 0; j < 10; j++) {
+            System.out.print("    " + (j + 1) + "   ");
+        }
+        System.out.println();
+
+        char c = 'A';
         for (int i = 0; i < 10; i++) {
+            System.out.print(c + " ");
             for (int j = 0; j < 10; j++) {
                 Cell cell = shipBoardCells[i][j];
                 ShipType shipType = cell.getShipType();
@@ -95,7 +127,11 @@ public class Player {
             }
 
             System.out.println();
+
+            c++;
         }
+
+        System.out.println();
     }
 
     private List<Index> getRandomIndexArray(int length, Set<Index> indexSet,

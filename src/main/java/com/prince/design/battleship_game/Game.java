@@ -9,14 +9,17 @@ public class Game {
 
     private static Game instance;
 
-    private Board board;
-
     private Player[] players;
 
     private Player winner = null;
 
-    int turn = 0;
+    private int turn = 0;
 
+    /**
+     * Used to create singleton object for this game.
+     *
+     * @return game object
+     */
     public static Game getInstance() {
         if (instance == null) {
             instance = new Game();
@@ -25,6 +28,9 @@ public class Game {
         return instance;
     }
 
+    /**
+     * Initializing players and its ships
+     */
     public void initialize() {
         players = new Player[2];
         players[0] = new Player("P1");
@@ -34,8 +40,14 @@ public class Game {
         players[1].initializeShips();
     }
 
-    public void play(String message) {
-        Coordinate coordinate = validateAndGetCoordinate(message);
+    /**
+     * Each player in turn shoot the ships of opponent player. If it is hit or miss, then player
+     * mark it in his tracker board accordingly
+     *
+     * @param input
+     */
+    public void play(String input) {
+        Coordinate coordinate = validateAndGetCoordinate(input);
 
         Player currentPlayer = players[turn % 2];
         Player opponentPlayer = players[(turn + 1) % 2];
@@ -46,14 +58,63 @@ public class Game {
         turn++;
     }
 
-    private Coordinate validateAndGetCoordinate(String message) {
-        if (message == null || message.length() < 2 || message.length() > 3) {
+    /**
+     * checks if winner is found or not
+     *
+     * @return returns true if winner is found i.e. player has destroyed all ships of opponents
+     */
+    public boolean winnerFound() {
+        boolean winnerFound = false;
+        for (int i = 0; i < players.length; i++) {
+            Board board = players[i].getShipBoard();
+            winnerFound = board.isAllShipsSunk();
+            if (winnerFound) {
+                if (i == 0) {
+                    winner = players[1];
+                } else {
+                    winner = players[0];
+                }
+
+                printGame();
+                break;
+            }
+        }
+
+        return winnerFound;
+    }
+
+    /**
+     * Returns name of winning player
+     *
+     * @return returns the name of winning player
+     */
+    public String getWinnerPlayer() {
+        String name = null;
+        if (winner != null) {
+            name = winner.getName();
+        }
+
+        return name;
+    }
+
+    /**
+     * prints both the ship and missile tracker board for each player
+     */
+    public void printGame() {
+        for (Player player : players) {
+            System.out.println("\n--------------------------------------------------------\n");
+            player.printBoards();
+        }
+    }
+
+    private Coordinate validateAndGetCoordinate(String input) {
+        if (input == null || input.length() < 2 || input.length() > 3) {
             throw new RuntimeException("Invalid input");
         }
 
-        char[] charArray = message.toUpperCase().toCharArray();
+        char[] charArray = input.toUpperCase().toCharArray();
         int x = charArray[0] - 'A';
-        int y;
+        final int y;
         if (charArray.length == 2) {
             y = Character.getNumericValue(charArray[1]);
         } else {
@@ -65,35 +126,5 @@ public class Game {
         }
 
         return new Coordinate(x, y - 1);
-    }
-
-    public boolean winnerFound() {
-        boolean winnerFound = false;
-        for (Player player : players) {
-            Board board = player.getShipBoard();
-            winnerFound = board.isAllShipsSunk();
-            if (winnerFound) {
-                winner = player;
-                break;
-            }
-        }
-
-        return winnerFound;
-    }
-
-    public String getWinnerPlayer() {
-        String name = null;
-        if (winner != null) {
-            name = winner.getName();
-        }
-
-        return name;
-    }
-
-    public void printGame() {
-        for (Player player : players) {
-            System.out.println("\n--------------------------------------------------------\n");
-            player.printBoards();
-        }
     }
 }
