@@ -1,5 +1,8 @@
 package com.prince.design.connection_pool.exception;
 
+/**
+ * @author Prince Raj
+ */
 public class ConnectionCreationException extends RuntimeException {
 
     public ConnectionCreationException(String message) {

@@ -1,5 +1,8 @@
 package com.prince.design.connection_pool.exception;
 
+/**
+ * @author Prince Raj
+ */
 public class ConnectionNotAvailableException extends RuntimeException {
 
     public ConnectionNotAvailableException(String message) {

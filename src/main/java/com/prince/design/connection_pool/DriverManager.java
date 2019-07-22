@@ -1,12 +1,12 @@
 package com.prince.design.connection_pool;
 
-import java.sql.SQLException;
-
+/**
+ * @author Prince Raj
+ */
 public class DriverManager {
 
-    public static Connection getConnection(String url, String user, String password)
-            throws SQLException {
+    public static RemoteConnection getConnection(String hostname, String port) {
 
-        return new ConnectionImpl();
+        return new RemoteConnectionImpl();
     }
 }

@@ -1,14 +1,15 @@
 package com.prince.design.connection_pool;
 
-import java.sql.SQLException;
-
+/**
+ * @author Prince Raj
+ */
 public interface ConnectionPool {
 
-    Connection getConnection() throws SQLException, InterruptedException;
+    RemoteConnection getConnection() throws InterruptedException;
 
-    boolean releaseConnection(Connection connection);
+    boolean releaseConnection(RemoteConnection connection);
 
-    int getCurrentPoolSize();
+    void shutdown();
 
-    void shutdown() throws SQLException;
+    void printStats();
 }
