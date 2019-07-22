@@ -14,6 +14,7 @@ public abstract class AbstractBoard {
     public AbstractBoard() {
         cells = new Cell[10][10];
 
+        // initializing all the cells with coordinate and colour as BLUE
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Cell cell = new Cell();

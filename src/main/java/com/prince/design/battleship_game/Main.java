@@ -17,7 +17,7 @@ public class Main {
             String input = br.readLine();
 
             if ("Draw Board".equals(input)) {
-                game.printGame();
+                game.drawGame();
             } else {
                 try {
                     game.play(input);

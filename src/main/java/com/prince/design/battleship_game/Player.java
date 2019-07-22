@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import lombok.Data;
-
 import com.prince.design.battleship_game.model.Cell;
 import com.prince.design.battleship_game.model.Color;
 import com.prince.design.battleship_game.model.Coordinate;
@@ -20,11 +18,14 @@ public class Player {
 
     private final String name;
 
+    // board to track his own ships
     private Board shipBoard = new ShipBoard();
 
+    // board to track the missiles he has fired
     private Board missileTrackerBoard = new MissileTrackerBoard();
 
-    private Random random = new Random();
+    // total shots made by the player
+    private int shotsCount = 0;
 
     public Player(String name) {
         this.name = name;
@@ -88,12 +89,17 @@ public class Player {
      */
     public void mark(Coordinate coordinate, boolean hit) {
         missileTrackerBoard.mark(coordinate, hit);
+        shotsCount++;
+    }
+
+    public int getShotsCount() {
+        return shotsCount;
     }
 
     /**
      * print both the boards
      */
-    public void printBoards() {
+    public void drawBoards() {
         Cell[][] shipBoardCells = shipBoard.getCells();
         Cell[][] attackedBoardCells = missileTrackerBoard.getCells();
 
@@ -138,6 +144,8 @@ public class Player {
             boolean horizontalDirection) {
 
         List<Index> indexArray = null;
+
+        Random random = new Random();
 
         boolean retry = true;
         while (retry) {
@@ -184,7 +192,6 @@ public class Player {
         return indexArray;
     }
 
-    @Data
     private static class Index {
 
         private final int x;
@@ -202,6 +209,28 @@ public class Player {
 
         public int getY() {
             return y;
+        }
+
+        public int hashCode() {
+            int prime = 59;
+            int result = prime + this.getX();
+            result = result * prime + this.getY();
+            return result;
+        }
+
+        public boolean equals(Object o) {
+            if (o == this) {
+                return true;
+            } else if (!(o instanceof Index)) {
+                return false;
+            } else {
+                Index other = (Index) o;
+                if (this.getX() != other.getX()) {
+                    return false;
+                } else {
+                    return this.getY() == other.getY();
+                }
+            }
         }
     }
 }

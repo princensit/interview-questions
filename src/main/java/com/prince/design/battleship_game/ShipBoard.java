@@ -13,6 +13,7 @@ import com.prince.design.battleship_game.model.ShipType;
  */
 public class ShipBoard extends AbstractBoard implements Board {
 
+    // for tracking remaining ships count for each type
     private Map<ShipType, Integer> remainingShips = new HashMap<ShipType, Integer>() {
         {
             put(ShipType.CARRIER, ShipType.CARRIER.getLength());

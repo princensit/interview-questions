@@ -75,7 +75,7 @@ public class Game {
                     winner = players[0];
                 }
 
-                printGame();
+                drawGame();
                 break;
             }
         }
@@ -84,7 +84,7 @@ public class Game {
     }
 
     /**
-     * Returns name of winning player
+     * returns name of winning player
      *
      * @return returns the name of winning player
      */
@@ -100,16 +100,26 @@ public class Game {
     /**
      * prints both the ship and missile tracker board for each player
      */
-    public void printGame() {
+    public void drawGame() {
         for (Player player : players) {
             System.out.println("\n--------------------------------------------------------\n");
-            player.printBoards();
+            player.drawBoards();
         }
     }
 
     private Coordinate validateAndGetCoordinate(String input) {
-        if (input == null || input.length() < 2 || input.length() > 3) {
-            throw new RuntimeException("Invalid input");
+        if (input == null) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        if (!input.startsWith("Fire ")) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        input = input.replace("Fire ", "");
+
+        if (input.length() < 2 || input.length() > 3) {
+            throw new IllegalArgumentException("Invalid input");
         }
 
         char[] charArray = input.toUpperCase().toCharArray();
@@ -122,7 +132,7 @@ public class Game {
         }
 
         if (!(x >= 0 && x <= 9 && y >= 1 && y <= 10)) {
-            throw new RuntimeException("Invalid input");
+            throw new IllegalArgumentException("Invalid input");
         }
 
         return new Coordinate(x, y - 1);
