@@ -1,6 +1,8 @@
 package com.prince.algo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
@@ -17,7 +19,13 @@ public class PermutationsOfString {
         String str1 = "abc";
         char[] arr1 = str1.toCharArray();
 
+        // approach 1
         print(arr1, 0);
+        System.out.println("##############");
+
+        // approach 2
+        List<String> permutations = getPermutations(str1);
+        System.out.println(permutations);
 
         System.out.println("##############");
 
@@ -40,6 +48,33 @@ public class PermutationsOfString {
             print(arr, start + 1);
             swap(arr, i, start);
         }
+    }
+
+    private static List<String> getPermutations(String str) {
+        if (str == null) {
+            return null;
+        }
+
+        List<String> permutations = new ArrayList<>();
+        if (str.isEmpty()) {
+            permutations.add("");
+            return permutations;
+        }
+
+        char firstChar = str.charAt(0);
+        String remainder = str.substring(1);
+        List<String> oldPermutations = getPermutations(remainder);
+        for (String current : oldPermutations) {
+
+            for (int i = 0; i <= current.length(); i++) {
+                String s1 = current.substring(0, i);
+                String s2 = current.substring(i);
+
+                permutations.add(s1 + firstChar + s2);
+            }
+        }
+
+        return permutations;
     }
 
     private static void printHavingDuplicates(char[] arr, int start) {
